@@ -4,7 +4,7 @@ use File::Temp qw(tempdir);
 
 use Luv::CLI::Registry;
 
-my $dir = tempdir(CLEANUP => 1);
+my $dir        = tempdir( CLEANUP => 1 );
 my $cache_path = "$dir/registry.json";
 
 my $sample_readme = <<'MD';
@@ -19,12 +19,13 @@ my $sample_readme = <<'MD';
 MD
 
 subtest 'parse_readme extracts entries' => sub {
-    my $r = Luv::CLI::Registry->new(cache_path => $cache_path);
+    my $r = Luv::CLI::Registry->new( cache_path => $cache_path );
     $r->parse_readme($sample_readme);
 
     my $baton = $r->find('baton');
     ok $baton, 'baton found';
-    is $baton->{url}, 'https://github.com/tesselode/baton', 'baton url correct';
+    is $baton->{url}, 'https://github.com/tesselode/baton',
+        'baton url correct';
     is $baton->{category}, 'Physics', 'baton category correct';
 
     my $tesound = $r->find('tesound');
@@ -32,19 +33,19 @@ subtest 'parse_readme extracts entries' => sub {
 };
 
 subtest 'save and load round-trip' => sub {
-    my $r = Luv::CLI::Registry->new(cache_path => $cache_path);
+    my $r = Luv::CLI::Registry->new( cache_path => $cache_path );
     $r->parse_readme($sample_readme);
     $r->save;
 
     ok -e $cache_path, 'cache file written';
 
-    my $loaded = Luv::CLI::Registry->new(cache_path => $cache_path);
+    my $loaded = Luv::CLI::Registry->new( cache_path => $cache_path );
     $loaded->load;
     ok $loaded->find('bump'), 'bump persisted and reloaded';
 };
 
 subtest 'search matches name and description' => sub {
-    my $r = Luv::CLI::Registry->new(cache_path => $cache_path);
+    my $r = Luv::CLI::Registry->new( cache_path => $cache_path );
     $r->parse_readme($sample_readme);
 
     my @by_name = $r->search('baton');
