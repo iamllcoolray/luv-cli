@@ -10,8 +10,10 @@ use Luv::CLI::Package;
 my $dir = tempdir( CLEANUP => 1 );
 chdir $dir or die $!;
 
-my $manifest = Luv::CLI::Manifest->new( path => 'luv.json',
-    project_name => 'zipgame' );
+my $manifest = Luv::CLI::Manifest->new(
+    path         => 'luv.json',
+    project_name => 'zipgame'
+);
 make_path(
     $manifest->source_dir, $manifest->library_dir,
     $manifest->assets_dir, $manifest->build_dir

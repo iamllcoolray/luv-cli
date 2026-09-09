@@ -1,4 +1,5 @@
 package Luv::CLI::Command::Init;
+
 # ABSTRACT: initialize a new luv project
 
 use v5.38;

@@ -8,8 +8,10 @@ my $dir  = tempdir( CLEANUP => 1 );
 my $path = "$dir/luv.json";
 
 subtest 'defaults' => sub {
-    my $m = Luv::CLI::Manifest->new( path => $path,
-        project_name => 'testgame' );
+    my $m = Luv::CLI::Manifest->new(
+        path         => $path,
+        project_name => 'testgame'
+    );
     is $m->project_name, 'testgame', 'project_name set';
     is $m->output_name, 'testgame.love',
         'output_name defaults from project_name';
@@ -20,8 +22,10 @@ subtest 'defaults' => sub {
 };
 
 subtest 'save and load round-trip' => sub {
-    my $m = Luv::CLI::Manifest->new( path => $path,
-        project_name => 'roundtrip' );
+    my $m = Luv::CLI::Manifest->new(
+        path         => $path,
+        project_name => 'roundtrip'
+    );
     $m->add_dependency(
         'baton',
         url => 'https://example.com/baton',

@@ -1,4 +1,5 @@
 package Luv::CLI::Command::Build;
+
 # ABSTRACT: package the project into a .love file
 
 use v5.38;
