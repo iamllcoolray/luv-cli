@@ -37,3 +37,27 @@ sub execute ( $self, $opt, $args ) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Command::List - list current dependencies
+
+=head1 SYNOPSIS
+
+    luv list
+
+=head1 DESCRIPTION
+
+Reads C<luv.json> and prints each dependency's name, URL, ref, and
+local path. Read-only; makes no changes to the project.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

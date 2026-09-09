@@ -58,3 +58,42 @@ method add_dir ( $zip, $dir, $zip_prefix ) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Package - packages a luv project into a .love file
+
+=head1 SYNOPSIS
+
+    my $pkg = Luv::CLI::Package->new(manifest => $manifest);
+    my $output_path = $pkg->build;
+
+=head1 DESCRIPTION
+
+Assembles a project's source, vendored libraries, and assets (plus
+C<main.lua>/C<conf.lua> from the project root) into a single C<.love>
+zip archive, as described by a L<Luv::CLI::Manifest>.
+
+=head1 METHODS
+
+=head2 build()
+
+Builds the C<.love> archive and writes it to the manifest's configured
+build directory and output filename. Returns the path to the written file.
+
+=head2 add_dir($zip, $dir, $zip_prefix)
+
+Recursively adds every file under C<$dir> to C<$zip>, placed under
+C<$zip_prefix> within the archive. Skips anything under the manifest's
+build directory.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

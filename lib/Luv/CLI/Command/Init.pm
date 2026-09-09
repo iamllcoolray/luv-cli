@@ -90,3 +90,30 @@ sub render( $template_path, $destination_path, %vars ) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Command::Init - initialize a new luv project
+
+=head1 SYNOPSIS
+
+    luv init
+    luv init --name my-game
+
+=head1 DESCRIPTION
+
+Scaffolds a new luv project: writes C<luv.json>, C<main.lua>,
+C<conf.lua>, C<.gitignore>, and the source/library/assets/build
+directories. Optionally creates and enters a new directory when
+C<--name> is given.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

@@ -34,3 +34,27 @@ sub execute ( $self, $opt, $args ) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Command::Remove - remove a library dependency
+
+=head1 SYNOPSIS
+
+    luv remove baton
+
+=head1 DESCRIPTION
+
+Deletes the vendored directory for the named dependency and removes
+its entry from C<luv.json>.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

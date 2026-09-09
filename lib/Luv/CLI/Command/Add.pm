@@ -66,3 +66,29 @@ sub execute ( $self, $opt, $args ) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Command::Add - add a library dependency from a git repo or the registry
+
+=head1 SYNOPSIS
+
+    luv add baton
+    luv add https://github.com/tesselode/baton --ref v1.0
+
+=head1 DESCRIPTION
+
+Resolves the given argument either as a library name (looked up in the
+local registry cache) or a raw git URL, clones it into the project's
+library directory, and records it in C<luv.json>.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

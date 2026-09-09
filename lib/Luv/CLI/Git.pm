@@ -47,3 +47,48 @@ method current_ref ($dest) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Git - git operations for fetching and updating library dependencies
+
+=head1 SYNOPSIS
+
+    my $git = Luv::CLI::Git->new;
+    $git->clone('https://github.com/tesselode/baton', 'lib/baton');
+    $git->pull('lib/baton');
+
+=head1 DESCRIPTION
+
+Thin wrapper around shelling out to the C<git> binary via L<IPC::Run>,
+used to fetch and update vendored library dependencies.
+
+=head1 METHODS
+
+=head2 clone($url, $dest, $ref)
+
+Clones C<$url> into C<$dest>. If C<$ref> is given, checks it out after
+cloning. Dies with git's stderr output on failure.
+
+=head2 checkout($dest, $ref)
+
+Checks out C<$ref> in the repository at C<$dest>. Dies on failure.
+
+=head2 pull($dest)
+
+Runs C<git pull> in the repository at C<$dest>. Dies on failure.
+
+=head2 current_ref($dest)
+
+Returns the current commit SHA of the repository at C<$dest>.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

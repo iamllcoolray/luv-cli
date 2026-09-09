@@ -18,3 +18,27 @@ sub execute ( $self, $opt, $args ) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Command::Update - refresh the local library registry cache
+
+=head1 SYNOPSIS
+
+    luv update
+
+=head1 DESCRIPTION
+
+Fetches the current awesome-love2d README, parses it, and overwrites
+the local registry cache used by C<luv search> and C<luv add>.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

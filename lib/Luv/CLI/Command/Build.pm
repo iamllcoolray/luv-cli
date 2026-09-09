@@ -26,3 +26,28 @@ sub execute ( $self, $opt, $args ) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Command::Build - package the project into a .love file
+
+=head1 SYNOPSIS
+
+    luv build
+
+=head1 DESCRIPTION
+
+Reads C<luv.json> and packages the project's source, vendored
+libraries, and assets (plus C<main.lua>/C<conf.lua>) into a C<.love>
+archive, written to the configured build directory.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

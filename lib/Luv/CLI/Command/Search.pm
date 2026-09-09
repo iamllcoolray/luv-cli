@@ -39,3 +39,29 @@ sub execute ( $self, $opt, $args ) {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Command::Search - search the library registry
+
+=head1 SYNOPSIS
+
+    luv search input
+    luv search physics --update
+
+=head1 DESCRIPTION
+
+Searches the local registry cache for libraries matching the given
+term, by name or description. Refreshes the cache first if it's stale
+or if C<--update> is given.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

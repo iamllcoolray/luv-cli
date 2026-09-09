@@ -107,3 +107,78 @@ method refresh () {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Registry - local cache of the awesome-love2d library list
+
+=head1 SYNOPSIS
+
+    my $registry = Luv::CLI::Registry->new(cache_path => $path);
+    $registry->refresh;
+    my @matches = $registry->search('input');
+    my $entry   = $registry->find('baton');
+
+=head1 DESCRIPTION
+
+Parses the C<awesome-love2d> README into a structured index of
+libraries, caches it locally as JSON, and serves name/description
+searches from that cache rather than re-fetching on every lookup.
+
+=head1 METHODS
+
+=head2 cache_path()
+
+Returns the path to the local cache file.
+
+=head2 load()
+
+Loads entries from the cache file, if present.
+
+=head2 save()
+
+Writes the current entries to the cache file as JSON.
+
+=head2 cache_dir()
+
+Returns the directory containing the cache file.
+
+=head2 is_stale($max_age_seconds)
+
+Returns true if the cache file is missing or older than
+C<$max_age_seconds> (default one week).
+
+=head2 add_entry($name, %info)
+
+Adds or replaces an entry in the in-memory index. C<%info> may include
+C<url>, C<category>, and C<description>.
+
+=head2 search($term)
+
+Returns a list of entries whose name or description matches C<$term>
+(case-insensitive).
+
+=head2 find($name)
+
+Returns the entry for C<$name> (case-insensitive), or undef.
+
+=head2 parse_readme($markdown)
+
+Parses awesome-love2d-style markdown into entries, populating the
+in-memory index.
+
+=head2 refresh()
+
+Fetches the current awesome-love2d README, parses it, and saves the
+result to the cache. Returns the number of entries indexed.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

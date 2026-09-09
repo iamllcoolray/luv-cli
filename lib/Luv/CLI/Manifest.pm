@@ -117,3 +117,101 @@ method exists_on_disk() {
 }
 
 1;
+
+=head1 NAME
+
+Luv::CLI::Manifest - reads and writes a luv project's luv.json manifest
+
+=head1 SYNOPSIS
+
+    my $manifest = Luv::CLI::Manifest->new(
+        path         => 'luv.json',
+        project_name => 'my-game',
+    );
+    $manifest->save;
+
+    my $loaded = Luv::CLI::Manifest->new(path => 'luv.json');
+    $loaded->load;
+
+=head1 DESCRIPTION
+
+Owns the on-disk shape of a luv project's C<luv.json> file: project
+identity, source/library/assets/build directory locations, and the
+dependency list. All commands that read or modify project state go
+through this class rather than touching JSON directly.
+
+=head1 METHODS
+
+=head2 add_dependency($name, %info)
+
+Adds a dependency to the manifest. Dies if a dependency with the same
+name (case-insensitively) already exists. C<%info> may include C<url>,
+C<ref>, and C<path>.
+
+=head2 remove_dependency($name)
+
+Removes a dependency by name (case-insensitive). Dies if it doesn't exist.
+
+=head2 has_dependency($name)
+
+Returns true if a dependency with the given name (case-insensitive) exists.
+
+=head2 dependencies()
+
+Returns a hashref of all dependencies, keyed by lowercase name.
+
+=head2 project_name()
+
+Returns the project's name.
+
+=head2 source_dir()
+
+Returns the configured source directory (default C<src>).
+
+=head2 library_dir()
+
+Returns the configured library/vendor directory (default C<lib>).
+
+=head2 assets_dir()
+
+Returns the configured assets directory (default C<assets>).
+
+=head2 build_dir()
+
+Returns the configured build output directory (default C<build>).
+
+=head2 output_name()
+
+Returns the filename the built C<.love> archive will be written as.
+
+=head2 path()
+
+Returns the path to the manifest file on disk.
+
+=head2 to_hash()
+
+Returns a plain hashref representation of the manifest, suitable for
+JSON encoding.
+
+=head2 save()
+
+Writes the manifest to C<path> as JSON.
+
+=head2 load()
+
+Reads and parses the manifest from C<path>, populating this object's fields.
+
+=head2 exists_on_disk()
+
+Returns true if the manifest file currently exists on disk.
+
+=head1 AUTHOR
+
+Nobunaga <nobunaga@cpan.org>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
