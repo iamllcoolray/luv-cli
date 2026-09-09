@@ -15,8 +15,8 @@ my @command_modules = qw(
     Luv::CLI::Command::Update
 );
 
-my %trustme = (
-    trustme => [qr/^(execute|opt_spec|abstract|usage_desc|validate_args)$/] );
+my %trustme = ( trustme =>
+        [qr/^(execute|opt_spec|abstract|usage_desc|validate_args|render)$/] );
 
 plan tests => 1 + scalar(@command_modules);
 

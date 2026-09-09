@@ -1,4 +1,5 @@
 package Luv::CLI;
+
 # ABSTRACT: command-line dependency manager for love2d projects
 
 use v5.38;
@@ -12,6 +13,8 @@ our $VERSION = '0.001';
 =head1 NAME
 
 Luv::CLI - command-line dependency manager for love2d projects
+
+=encoding UTF-8
 
 =head1 SYNOPSIS
 
