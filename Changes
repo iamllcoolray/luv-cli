@@ -1,6 +1,8 @@
 Revision history for Luv-CLI
 
 {{$NEXT}}
+
+0.001     2026-09-09 17:56:40-04:00 America/New_York
     - Initial release
     - `luv init` scaffolds a new project (luv.json, main.lua, conf.lua,
       .gitignore, source/library/assets/build directories)
