@@ -1,3 +1,6 @@
+# PODNAME: Luv::CLI::Manifest
+# ABSTRACT: reads and writes a luv project's luv.json manifest
+
 use v5.38;
 use Object::Pad;
 use JSON::PP;

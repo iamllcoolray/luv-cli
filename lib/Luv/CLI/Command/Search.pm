@@ -1,4 +1,6 @@
 package Luv::CLI::Command::Search;
+# ABSTRACT: search the library registry
+
 use v5.38;
 
 use App::Cmd::Setup -command;

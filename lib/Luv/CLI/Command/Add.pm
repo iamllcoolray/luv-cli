@@ -1,4 +1,6 @@
 package Luv::CLI::Command::Add;
+# ABSTRACT: add a library dependency from a git repo or the registry
+
 use v5.38;
 use Object::Pad;
 

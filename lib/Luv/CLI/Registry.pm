@@ -1,3 +1,6 @@
+# PODNAME: Luv::CLI::Registry
+# ABSTRACT: local cache of the awesome-love2d library list
+
 use v5.38;
 use Object::Pad;
 

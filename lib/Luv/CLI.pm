@@ -1,4 +1,6 @@
 package Luv::CLI;
+# ABSTRACT: command-line dependency manager for love2d projects
+
 use v5.38;
 
 use App::Cmd::Setup -app;

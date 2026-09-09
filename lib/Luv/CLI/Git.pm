@@ -1,3 +1,6 @@
+# PODNAME: Luv::CLI::Git
+# ABSTRACT: git operations for fetching and updating library dependencies
+
 use v5.38;
 use Object::Pad;
 

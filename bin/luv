@@ -1,4 +1,7 @@
 #!/usr/bin/env perl
+# PODNAME: luv
+# ABSTRACT: command-line dependency manager for love2d projects
+
 use v5.38;
 
 use FindBin;

@@ -1,4 +1,6 @@
 package Luv::CLI::Command::Remove;
+# ABSTRACT: remove a library dependency
+
 use v5.38;
 use Object::Pad;
 

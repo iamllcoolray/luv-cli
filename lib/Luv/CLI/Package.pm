@@ -1,3 +1,6 @@
+# PODNAME: Luv::CLI::Package
+# ABSTRACT: packages a luv project into a .love file
+
 use v5.38;
 use Object::Pad;
 
