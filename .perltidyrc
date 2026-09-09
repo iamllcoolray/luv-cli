@@ -5,8 +5,7 @@
 --add-semicolons
 --add-terminal-newline
 --add-whitespace
---backup-file-extension="bak"
---backup-method="copy"
+--backup-file-extension="/"
 --blank-lines-after-opening-block=0
 --blank-lines-before-closing-block=0
 --blank-lines-before-packages=1
@@ -145,3 +144,4 @@
 --noweld-nested-containers
 --whitespace-cycle=0
 --nostandard-output
+-bext='/'
