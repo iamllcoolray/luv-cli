@@ -22,11 +22,3 @@ Nobunaga <nobunaga@cpan.org>
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
-
-# POD ERRORS
-
-Hey! **The above document had some coding errors, which are explained below:**
-
-- Around line 13:
-
-    Non-ASCII character seen before =encoding in 'LÖVE'. Assuming UTF-8
