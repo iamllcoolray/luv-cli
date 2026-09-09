@@ -6,7 +6,7 @@ use File::Path qw(make_path);
 
 class Luv::CLI::Registry;
 
-field $cache_path :param;
+field $cache_path : param;
 field %entries;
 
 method cache_path () { return $cache_path; }
@@ -22,12 +22,13 @@ method load () {
 }
 
 method save () {
-    make_path($self->cache_dir);
+    File::Path::make_path( $self->cache_dir );
     open my $fh, '>', $cache_path or die "Cannot write $cache_path: $!\n";
-    print { $fh } JSON::PP->new->utf8->canonical->pretty->encode({
-        updated_at => time,
-        entries    => \%entries,
-    });
+    print {$fh} JSON::PP->new->utf8->canonical->pretty->encode(
+        {   updated_at => time,
+            entries    => \%entries,
+        }
+    );
     close $fh;
     return;
 }
@@ -37,13 +38,13 @@ method cache_dir () {
     return $dir;
 }
 
-method is_stale ($max_age_seconds = 86400 * 7) {
+method is_stale ( $max_age_seconds = 86400 * 7 ) {
     return 1 unless -e $cache_path;
-    return (time - (stat($cache_path))[9]) > $max_age_seconds;
+    return ( time - ( stat($cache_path) )[9] ) > $max_age_seconds;
 }
 
-method add_entry ($name, %info) {
-    $entries{$name} = {
+method add_entry ( $name, %info ) {
+    $entries{ lc $name } = {
         url         => $info{url},
         category    => $info{category},
         description => $info{description},
@@ -53,30 +54,36 @@ method add_entry ($name, %info) {
 
 method search ($term) {
     my @matches;
-    for my $name (keys %entries) {
+    for my $name ( keys %entries ) {
         push @matches, { name => $name, %{ $entries{$name} } }
             if $name =~ /\Q$term\E/i
-            || ($entries{$name}{description} // '') =~ /\Q$term\E/i;
+            || ( $entries{$name}{description} // '' ) =~ /\Q$term\E/i;
     }
     return @matches;
 }
 
 method find ($name) {
-    return $entries{$name};
+    my ($match) = grep { lc($_) eq lc($name) } keys %entries;
+    return $match ? $entries{$match} : undef;
 }
 
 method parse_readme ($markdown) {
     my $category = 'Uncategorized';
 
-    for my $line (split /\n/, $markdown) {
-        if ($line =~ /^##\s+(.+)/) {
+    for my $line ( split /\n/, $markdown ) {
+        if ( $line =~ /^##\s+(.+)/ ) {
             $category = $1;
             next;
         }
 
-        if ($line =~ /^\s*-\s*\[([^\]]+)\]\(([^)]+)\)\s*-\s*(.+)/) {
-            my ($name, $url, $description) = ($1, $2, $3);
-            $self->add_entry($name, url => $url, category => $category, description => $description);
+        if ( $line =~ /^\s*[-*]\s*\[([^\]]+)\]\(([^)]+)\)\s*-\s*(.+)/ ) {
+            my ( $name, $url, $description ) = ( $1, $2, $3 );
+            $self->add_entry(
+                $name,
+                url         => $url,
+                category    => $category,
+                description => $description
+            );
         }
     }
 
@@ -84,11 +91,12 @@ method parse_readme ($markdown) {
 }
 
 method refresh () {
-    my $readme_url = 'https://raw.githubusercontent.com/love2d-community/awesome-love2d/master/README.md';
+    my $readme_url
+        = 'https://raw.githubusercontent.com/love2d-community/awesome-love2d/master/README.md';
 
     require IPC::Run;
-    my ($out, $err);
-    IPC::Run::run(['curl', '-sL', $readme_url], \undef, \$out, \$err)
+    my ( $out, $err );
+    IPC::Run::run( [ 'curl', '-sL', $readme_url ], \undef, \$out, \$err )
         or die "Failed to fetch awesome-love2d README:\n$err";
 
     %entries = ();
