@@ -21,7 +21,7 @@ ADJUST {
 }
 
 method add_dependency( $name, %info ) {
-    die "Dependency '$name' already exits.\n"
+    die "Dependency '$name' already exists.\n"
         if exists $dependencies{ lc $name };
 
     $dependencies{$name} = {
