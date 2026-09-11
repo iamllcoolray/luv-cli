@@ -210,6 +210,10 @@ Writes the manifest to C<path> as JSON.
 
 Reads and parses the manifest from C<path>, populating this object's fields.
 
+=head2 clear_dependencies()
+
+Removes all dependencies from the manifest.
+
 =head2 exists_on_disk()
 
 Returns true if the manifest file currently exists on disk.
