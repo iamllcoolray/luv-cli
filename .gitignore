@@ -42,3 +42,6 @@ inc/
 
 # Project Builds
 Luv-CLI-*
+
+# Scripts
+run-perltidy.sh

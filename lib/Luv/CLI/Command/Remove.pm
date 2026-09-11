@@ -14,25 +14,43 @@ sub abstract {
     "Removes a library dependency.";
 }
 
-sub execute ( $self, $opt, $args ) {
-    my $name = $args->[0] or die "Usage: luv remove <library-name>\n";
+sub opt_spec {
+    return ( [ 'all|a' => 'remove all dependencies' ], );
+}
 
+sub execute ( $self, $opt, $args ) {
     my $manifest_path = "luv.json";
     die "No luv.json found — run 'luv init' first\n" unless -e $manifest_path;
 
     my $manifest = Luv::CLI::Manifest->new( path => $manifest_path );
     $manifest->load;
 
-    die "No such dependency: $name\n"
-        unless $manifest->has_dependency( lc $name );
+    if ( $opt->{all} ) {
+        my $deps  = $manifest->dependencies;
+        my $count = scalar keys %$deps;
+
+        for my $key ( keys %$deps ) {
+            File::Path::remove_tree( $deps->{$key}{path} )
+                if -d $deps->{$key}{path};
+        }
+
+        $manifest->clear_dependencies;
+        $manifest->save;
+        print "Removed all $count dependencies\n";
+        return;
+    }
+
+    my $name = $args->[0] or die "Usage: luv remove <library-name> | --all\n";
+
+    die "No such dependency: $name\n" unless $manifest->has_dependency($name);
 
     my $dep = $manifest->dependencies->{ lc $name };
     File::Path::remove_tree( $dep->{path} ) if -d $dep->{path};
 
-    $manifest->remove_dependency( lc $name );
+    $manifest->remove_dependency($name);
     $manifest->save;
 
-    print "Removed '$name'\n";
+    print "Removed '$dep->{name}'\n";
     return;
 }
 
