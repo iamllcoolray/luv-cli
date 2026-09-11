@@ -48,6 +48,7 @@ method is_stale ( $max_age_seconds = 86400 * 7 ) {
 
 method add_entry ( $name, %info ) {
     $entries{ lc $name } = {
+        name        => $name,
         url         => $info{url},
         category    => $info{category},
         description => $info{description},
@@ -107,6 +108,10 @@ method refresh () {
     $self->save;
 
     return scalar keys %entries;
+}
+
+method all_entries () {
+    return values %entries;
 }
 
 1;
