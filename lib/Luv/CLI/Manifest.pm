@@ -115,6 +115,12 @@ method load() {
     return;
 }
 
+method clear_dependencies() {
+    %dependencies = ();
+
+    return;
+}
+
 method exists_on_disk() {
     return -e $path;
 }
