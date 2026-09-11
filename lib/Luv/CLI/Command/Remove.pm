@@ -40,17 +40,23 @@ sub execute ( $self, $opt, $args ) {
         return;
     }
 
-    my $name = $args->[0] or die "Usage: luv remove <library-name> | --all\n";
+    die "Usage: luv remove <library-name> [...] | --all\n" unless @$args;
 
-    die "No such dependency: $name\n" unless $manifest->has_dependency($name);
+    for my $name (@$args) {
+        unless ( $manifest->has_dependency($name) ) {
+            warn "No such dependency: $name — skipping\n";
+            next;
+        }
 
-    my $dep = $manifest->dependencies->{ lc $name };
-    File::Path::remove_tree( $dep->{path} ) if -d $dep->{path};
+        my $dep = $manifest->dependencies->{ lc $name };
+        File::Path::remove_tree( $dep->{path} ) if -d $dep->{path};
+        $manifest->remove_dependency($name);
 
-    $manifest->remove_dependency($name);
+        my $display_name = $dep->{name} // $name;
+        print "Removed '$display_name'\n";
+    }
+
     $manifest->save;
-
-    print "Removed '$dep->{name}'\n";
     return;
 }
 
