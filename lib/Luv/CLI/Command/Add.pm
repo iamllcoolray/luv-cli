@@ -88,13 +88,16 @@ Luv::CLI::Command::Add - add a library dependency from a git repo or the registr
 =head1 SYNOPSIS
 
     luv add baton
+    luv add baton bump https://github.com/tesselode/some-lib
     luv add https://github.com/tesselode/baton --ref v1.0
 
 =head1 DESCRIPTION
 
-Resolves the given argument either as a library name (looked up in the
+Resolves each given argument either as a library name (looked up in the
 local registry cache) or a raw git URL, clones it into the project's
-library directory, and records it in C<luv.json>.
+library directory, and records it in C<luv.json>. Accepts one or more
+arguments in a single invocation; if one fails to resolve or clone, a
+warning is printed and the rest continue.
 
 =head1 AUTHOR
 

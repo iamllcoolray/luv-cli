@@ -180,6 +180,10 @@ in-memory index.
 Fetches the current awesome-love2d README, parses it, and saves the
 result to the cache. Returns the number of entries indexed.
 
+=head2 all_entries()
+
+Returns a list of every entry currently in the index.
+
 =head1 AUTHOR
 
 Nobunaga <nobunaga@cpan.org>

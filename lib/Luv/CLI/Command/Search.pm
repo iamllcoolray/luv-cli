@@ -64,12 +64,14 @@ Luv::CLI::Command::Search - search the library registry
 
     luv search input
     luv search physics --update
+    luv search --all
 
 =head1 DESCRIPTION
 
 Searches the local registry cache for libraries matching the given
 term, by name or description. Refreshes the cache first if it's stale
-or if C<--update> is given.
+or if C<--update> is given. With C<--all> (or C<-a>), lists every
+library in the cache instead of requiring a search term.
 
 =head1 AUTHOR
 
