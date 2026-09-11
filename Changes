@@ -1,6 +1,8 @@
 Revision history for Luv-CLI
 
 {{$NEXT}}
+
+0.002     2026-09-11 02:15:47-04:00 America/New_York
     - `luv add` and `luv remove` accept multiple libraries in a single
       invocation
     - `luv remove --all`/`-a` removes every dependency at once
