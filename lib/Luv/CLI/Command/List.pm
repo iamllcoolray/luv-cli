@@ -1,6 +1,6 @@
 package Luv::CLI::Command::List;
 
-# ABSTRACT: list current dependencies
+# ABSTRACT: list current library dependencies
 
 use v5.38;
 use Object::Pad;
@@ -43,7 +43,7 @@ sub execute ( $self, $opt, $args ) {
 
 =head1 NAME
 
-Luv::CLI::Command::List - list current dependencies
+Luv::CLI::Command::List - list current library dependencies
 
 =head1 SYNOPSIS
 
@@ -51,7 +51,7 @@ Luv::CLI::Command::List - list current dependencies
 
 =head1 DESCRIPTION
 
-Reads C<luv.json> and prints each dependency's name, URL, ref, and
+Reads C<luv.json> and prints each library dependency's name, URL, ref, and
 local path. Read-only; makes no changes to the project.
 
 =head1 AUTHOR
