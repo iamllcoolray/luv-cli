@@ -22,7 +22,7 @@ method build () {
         }
     }
 
-    $self->add_dir( $zip, $manifest->source_dir,  '' );
+    $self->add_dir( $zip, $manifest->source_dir,  $manifest->source_dir );
     $self->add_dir( $zip, $manifest->library_dir, $manifest->library_dir );
     $self->add_dir( $zip, $manifest->assets_dir,  $manifest->assets_dir );
 
