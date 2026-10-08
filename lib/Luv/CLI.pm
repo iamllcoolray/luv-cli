@@ -6,7 +6,7 @@ use v5.38;
 
 use App::Cmd::Setup -app;
 
-our $VERSION = '0.004';
+our $VERSION = '0.005';
 
 1;
 
